@@ -3,7 +3,7 @@ import Card from '../UI/Card'
 import Button from '../UI/Button'
 
 
-function AddWorker() {
+function AddWorker(props) {
 
    const [enteredWorkerName , setEnteredWorkerName] = useState("");
    const [enteredWage , setEnteredWage] = useState("");
@@ -20,11 +20,19 @@ function AddWorker() {
     if (+enteredWage < minimumWage) {
       return;
     }
-    setEnteredWage("");
+   
+      props.setWorkers((prevState) =>[
+        {
+          id: Math.floor(Math.random() * 1000),
+          name: enteredWorkerName, 
+          wage: enteredWage,
+        },
+        ...prevState,
+      ]);
       setEnteredWorkerName("");
-     console.log(enteredWorkerName,enteredWage)
+      setEnteredWage("");
     
-   }
+   };
    
 
 
